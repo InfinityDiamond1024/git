@@ -1,0 +1,77 @@
+
+<html lang="en">
+
+<body>
+
+<header>
+  <h1>My Website</h1>
+  <p>Welcome to our homepage!</p>
+</header>
+
+<main>
+  <h2>Table test</h2> 
+  <form (submit)="onFormSubmit()" [formGroup]="Employeeform">
+    <h1>BRUH</h1>
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" formControlName="name">
+      <label for="code">Code: </label>
+      <input type="text" formControlName="code">
+      <label for="email">Email: </label>
+      <input type="text" formControlName="email">
+      <label for="active">active: </label>
+      <input type="checkbox" formControlName="active">
+
+
+    </div>
+    <div>
+      <button type="submit" >ADD</button>
+    </div>
+  </form>
+  <table>
+    <thead>
+      <tr>
+        <th>UID</th>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (employee$ |async ; as Employees) {
+        @if (Employees.length >0) {
+          @for(items of Employees; track $index){
+            <tr>        
+            
+            <td>{{ items.uid }}</td>
+            <td>{{ items.code }}</td>
+            <td>{{ items.name }}</td>
+            <td>{{ items.email }}</td>
+            <td>{{$index}}</td>
+            <td>
+              <button (click)="onDelete(items.uid)">Delete</button> <!-- Added delete button -->
+            </td>
+            </tr>
+          }
+      
+      
+        }
+        @else {
+          <p>Data gonee</p>
+        }
+      
+      }
+      <!-- Iterate over each employee and display their details -->
+      
+    </tbody>
+  </table>
+
+  
+</main>
+
+<footer>
+  <p>&copy; 2024 My Website. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
